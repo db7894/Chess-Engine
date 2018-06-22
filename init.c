@@ -1,13 +1,14 @@
 // init.c
 
-#include "stdio.h"
 #include "defs.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 // explanation for below is here: https://www.youtube.com/watch?v=WqVwQBXLwE0&index=12&list=PLZ1QII7yudbc-Ky058TEaOstZHVbT-2hg
-#define RAND_64 (     (U64)rand() + \
-                      (U64)rand() << 15 + \
-                      (U64)rand() << 30 + \
-                      (U64)rand() << 45 + \
+#define RAND_64 (     (U64)rand() | \
+                      (U64)rand() << 15 | \
+                      (U64)rand() << 30 | \
+                      (U64)rand() << 45 | \
                       ( (U64)rand() & 0xf) << 60  )
 
 int Sq120ToSq64[BRD_SQ_NUM];
