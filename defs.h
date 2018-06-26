@@ -86,10 +86,11 @@ typedef struct {
 
     U64 posKey;
 
-    int pcsNum[13]; //# pieces on board, indexed by piece type
-    int bigPcs[3]; // store by color, # of "big pieces"  (not pawns)
-    int majPcs[3]; //queen, king
-    int minPcs[3];
+    int pceNum[13]; //# pieces on board, indexed by piece type
+    int bigPce[2]; // store by color, # of "big pieces"  (not pawns)
+    int majPce[2]; //queen, king
+    int minPce[2];
+    int material[2];
 
     S_UNDO history[MAXGAMEMOVES]; // each time a move is made, store all important vars here
 
@@ -125,6 +126,15 @@ extern char SideChar[];
 extern char RankChar[];
 extern char FileChar[];
 
+extern int PieceBig[13];
+extern int PieceMaj[13];
+extern int PieceMin[13];
+extern int PieceVal[13];
+extern int PieceCol[13];
+
+extern int FilesBrd[BRD_SQ_NUM];
+extern int RanksBrd[BRD_SQ_NUM];
+
 /* FUNCTIONS */
 
 // init.c
@@ -142,5 +152,7 @@ extern U64 GeneratePosKey(const S_BOARD *pos);
 extern void ResetBoard(S_BOARD *pos);
 extern int ParseFen(char *fen, S_BOARD *pos);
 extern void PrintBoard(const S_BOARD *pos);
+extern void UpdateListsMaterial(S_BOARD *pos);
+extern int CheckBoard(const S_BOARD *pos);
 
 #endif
